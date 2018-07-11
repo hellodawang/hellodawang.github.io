@@ -5,6 +5,9 @@ import cropper from '@/components/cropper'
 import info from '@/components/info/info'
 import board from '@/components/board/board'
 import defect from '@/components/defect/defect'
+import addDefect from '@/components/defect/addDefect'
+import risk from '@/components/risk/risk'
+import addRisk from '@/components/risk/addRisk'
 
 Vue.use(Router)
 
@@ -37,13 +40,23 @@ export default new Router({
     },
     {
       path: '/risk',
-      name: 'cropper',
-      component: cropper
+      name: 'risk',
+      component: risk
     },
     {
       path: '/cost',
       name: 'cropper',
       component: cropper
+    },
+    {
+      path: '/addDefect',
+      name: 'addDefect',
+      component: addDefect
+    },
+    {
+      path: '/addRisk',
+      name: 'addRisk',
+      component: addRisk
     },
   ]
 })
