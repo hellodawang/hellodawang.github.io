@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    <div class="nav">顶部头</div>
+    <div class="nav"></div>
     <div class="six">
       <ul class="aside">
         <li><router-link to="/info">项目概况</router-link></li>
         <li><router-link to="/version">迭代版本管理</router-link></li>
-        <li><router-link to="/board">需求管理</router-link></li>
+        <li><router-link to="/require">需求管理</router-link></li>
         <li><router-link to="/board">story看板</router-link></li>
         <li><router-link to="/defect">缺陷管理</router-link></li>
         <li><router-link to="/risk">风险管理</router-link></li>

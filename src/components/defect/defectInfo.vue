@@ -1,9 +1,9 @@
 <template>
     <div>
         <el-steps :active="1"  align-center>
-            <el-step title="步骤 1" description="这是一段很长很长很长的描述性文字"></el-step>
-            <el-step title="步骤 2" description="这是一段很长很长很长的描述性文字"></el-step>
-            <el-step title="步骤 3" description="这段就没那么长了"></el-step>
+            <el-step title="步骤 1" description="提交"></el-step>
+            <el-step title="步骤 2" description="处理"></el-step>
+            <el-step title="步骤 3" description="关闭"></el-step>
         </el-steps>
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
             <el-form-item label="缺陷名称" prop="name">
@@ -11,8 +11,8 @@
             </el-form-item>
             <el-form-item label="迭代版本" prop="region">
                 <el-select v-model="ruleForm.region" placeholder="请选择版本">
-                <el-option label="六月份版本" value="shanghai"></el-option>
-                <el-option label="七月份版本" value="beijing"></el-option>
+                <el-option label="迭代1" value="shanghai"></el-option>
+                <el-option label="迭代2" value="beijing"></el-option>
                 </el-select>
             </el-form-item>
             <el-form-item label="严重程度" prop="region">
@@ -21,10 +21,10 @@
                 <el-option label="提示" value="beijing"></el-option>
                 </el-select>
             </el-form-item>
-            <el-form-item label="关联story" prop="delivery">
+            <el-form-item label="关联需求" prop="delivery">
                 <el-select v-model="ruleForm.region" placeholder="请选择story">
-                    <el-option label="story1" value="shanghai"></el-option>
-                    <el-option label="story2" value="beijing"></el-option>
+                    <el-option label="需求1" value="shanghai"></el-option>
+                    <el-option label="需求2" value="beijing"></el-option>
                 </el-select>
             </el-form-item>
             <el-form-item label="缺陷描述" prop="desc">

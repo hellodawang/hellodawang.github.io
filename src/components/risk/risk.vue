@@ -3,7 +3,6 @@
         <el-row class="toolbar">
             <el-button type="primary" size="mini" icon="el-icon-plus" @click="addDefect">新增</el-button>
             <el-button type="primary" size="mini" icon="el-icon-printer">导出</el-button>
-            <el-button type="primary" size="mini" icon="el-icon-printer">导入</el-button>
             <el-select  placeholder="请选择版本" size="mini">
                 <el-option label="六月份版本" value="shanghai"></el-option>
                 <el-option label="七月份版本" value="beijing"></el-option>
@@ -31,27 +30,27 @@ export default {
         return {
           tableData: [{
             title: '风险1',
-            version: '6月份版本',
+            version: '迭代1',
             level: '1',
             responsible:'sss',
             createTime:'2018-08-06'
           }, 
           {
             title: '风险1',
-            version: '6月份版本',
+            version: '迭代1',
             level: '1',
             responsible:'sss',
             createTime:'2018-08-06'
           },{
             title: '风险1',
-            version: '6月份版本',
+            version: '迭代1',
             level: '1',
             responsible:'sss',
             createTime:'2018-08-06'
           },
           {
             title: '风险1',
-            version: '6月份版本',
+            version: '迭代1',
             level: '1',
             responsible:'sss',
             createTime:'2018-08-06'

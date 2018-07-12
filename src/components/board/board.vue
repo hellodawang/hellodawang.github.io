@@ -3,21 +3,21 @@
         <div class="tool">
             <el-row>
                 <el-col :span="4">
-                    迭代版本
+                    <!-- 迭代版本 -->
                     <el-select  placeholder="请选择迭代版本" size="mini">
                         <el-option label="迭代1" value="shanghai"></el-option>
                         <el-option label="迭代2" value="beijing"></el-option>
                     </el-select>
                 </el-col>
                 <el-col :span="4">
-                    优先级
+                    <!-- 优先级 -->
                     <el-select  placeholder="请选择优先级" size="mini">
                         <el-option label="1" value="shanghai"></el-option>
                         <el-option label="2" value="beijing"></el-option>
                     </el-select>
                 </el-col>
                 <el-col :span="4">
-                    处理人
+                    <!-- 处理人 -->
                     <el-select  placeholder="处理人" size="mini">
                         <el-option label="张三" value="shanghai"></el-option>
                         <el-option label="李四" value="beijing"></el-option>
@@ -28,8 +28,8 @@
                 </el-col>
             </el-row>
             <el-row style="margin-top:10px">
-                <el-col :span='2'><el-button size='mini'  icon="el-icon-plus">新增story</el-button></el-col>
-                <el-col :span='2'><el-button size='mini' icon="el-icon-upload2">story导入</el-button></el-col>
+                <el-col :span='2'><el-button size='mini'  icon="el-icon-plus" @click="addStory">新增story</el-button></el-col>
+                <!-- <el-col :span='2'><el-button size='mini' icon="el-icon-upload2">story导入</el-button></el-col> -->
             </el-row>
         </div>
         <div class="ggg">
@@ -144,6 +144,9 @@ export default {
       showDetail(){
         //   路由跳转
         this.$router.push('editStory')
+      },
+      addStory(){
+         this.$router.push('addStory') 
       }
     }
 }

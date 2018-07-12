@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import cropper from '@/components/cropper'
 import info from '@/components/info/info'
 import board from '@/components/board/board'
+import addStory from '@/components/board/addStory'
 import defect from '@/components/defect/defect'
 import addDefect from '@/components/defect/addDefect'
 import risk from '@/components/risk/risk'
@@ -11,7 +12,8 @@ import addRisk from '@/components/risk/addRisk'
 import editStory from '@/components/board/storyDetail'
 import defectInfo from '@/components/defect/defectInfo'
 import version from '@/components/version'
-
+import addVersion from '@/components/addVersion'
+import require from '@/components/require'
 Vue.use(Router)
 
 export default new Router({
@@ -75,6 +77,21 @@ export default new Router({
       path: '/version',
       name: 'version',
       component: version
+    },
+    {
+      path: '/addVersion',
+      name: 'addVersion',
+      component: addVersion
+    },
+    {
+      path: '/addStory',
+      name: 'addStory',
+      component: addStory
+    },
+    {
+      path: '/require',
+      name: 'require',
+      component: require
     }
   ]
 })
