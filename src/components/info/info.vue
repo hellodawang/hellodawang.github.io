@@ -15,7 +15,6 @@
             <div class="general-progress">
                 <h3>项目进度</h3>
                 <div id="mychart"></div>
-                <!-- <div id="fenbu"> -->
             </div>
             <div class="general-defect">
                 <h3>缺陷率</h3>
@@ -24,38 +23,37 @@
             <div class="general-risk">
                 <h3>风险top3</h3>
                 <ul id="defect">
-                    <li>风险2</li>
-                    <li>风险3</li>
-                    <li>风险1</li>
+                    <li class="top1">风险2</li>
+                    <li class="top2">风险3</li>
+                    <li class="top3">风险1</li>
                 </ul>
             </div>
         </div>
         <div class="middle-wrapper">
             <!-- 项目进度分布 -->
             <div class="progress">
-                <h3>项目进度分布</h3>
+                <!-- <h3>项目进度分布</h3> -->
                 <div id="fenbu">
-
                 </div>
             </div>
             <div class="defect-level">
-                <h3>缺陷严重等级分布</h3>
-                <div id="defect">
+                <!-- <h3>缺陷严重等级分布</h3> -->
+                <div id="defectLevel">
 
                 </div>
             </div>
             <div class="progress">
-                <h3>里程碑</h3>
+                <!-- <h3>里程碑</h3> -->
             </div>
         </div>
         <div class="footer-wrapper">
             <div>
-                <h3>各个版本缺陷率分布</h3>   
+                <h3>各个版本缺陷率分布</h3>
+                <div id="defectRate"></div>   
             </div>
             <div>
-                <h3>各个版本缺陷率分布</h3>   
+                <h3>里程碑</h3>   
             </div>
-
         </div>
     </div>
 </template>
@@ -68,7 +66,7 @@ export default {
                 backgroundColor:'#FFF',
                 color:['#38a8da','#d4effa'],
                 title: {
-                    text: 'title',
+                    // text: 'title',
                     top:'3%',
                     left:'1%',
                     textStyle:{
@@ -118,7 +116,7 @@ export default {
                 backgroundColor:'#FFF',
                 color:['#38a8da','#d4effa'],
                 title: {
-                    text: 'title',
+                    // text: 'title',
                     top:'3%',
                     left:'1%',
                     textStyle:{
@@ -165,8 +163,8 @@ export default {
             defect.setOption(option1)
             let option2 = {
                 title : {
-                    text: '同名数量统计',
-                    subtext: '纯属虚构',
+                    text: '项目进度分布',
+                    // subtext: '纯属虚构',
                     x:'center'
                 },
                 tooltip : {
@@ -180,22 +178,26 @@ export default {
                     top: 20,
                     bottom: 20,
                     data: [
-                        {name: 'A', value: 1212},
-                        {name: 'B', value: 2323},
-                        {name: 'C', value: 1919}
+                        {name: '需求分析中', value: 1212},
+                        {name: '开发中', value: 2323},
+                        {name: '待开发', value: 1919},
+                        {name: '待测试', value: 1919},
+                        {name: '已完成', value: 1919},
                     ],
                     // selected: data.selected
                 },
                 series : [
                     {
-                        name: '姓名',
+                        // name: '姓名',
                         type: 'pie',
                         radius : '55%',
                         center: ['40%', '50%'],
                          data: [
-                            {name: 'A', value: 1212},
-                            {name: 'B', value: 2323},
-                            {name: 'C', value: 1919}
+                            {name: '需求分析中', value: 1212},
+                            {name: '开发中', value: 2323},
+                            {name: '待开发', value: 1919},
+                            {name: '待测试', value: 1919},
+                            {name: '已完成', value: 1919},
                         ],
                         label: {
                             normal: {
@@ -219,6 +221,78 @@ export default {
                 ],
             };
             this.$echarts.init(document.getElementById('fenbu')).setOption(option2)
+            let option3 = {
+                title : {
+                    text: '缺陷严重等级',
+                    // subtext: '纯属虚构',
+                    x:'center'
+                },
+                tooltip : {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+                legend: {
+                    type: 'scroll',
+                    orient: 'vertical',
+                    right: 10,
+                    top: 20,
+                    bottom: 20,
+                    data: [
+                        {name: '致命', value: 10},
+                        {name: '严重', value: 800},
+                        {name: '一般', value: 600},
+                        {name: '提示', value: 2000},
+                    ],
+                    // selected: data.selected
+                },
+                series : [
+                    {
+                        // name: '姓名',
+                        type: 'pie',
+                        radius : '55%',
+                        center: ['40%', '50%'],
+                         data: [
+                            {name: '致命', value: 50},
+                            {name: '严重', value: 800},
+                            {name: '一般', value: 600},
+                            {name: '提示', value: 1000},
+                        ],
+                        label: {
+                            normal: {
+                                show: false,
+                                position: 'center'
+                            },
+                            emphasis: {
+                                show: false,
+                                textStyle: {
+                                    fontSize: '30',
+                                    fontWeight: 'bold'
+                                }
+                            }
+                        },
+                        labelLine: {
+                            normal: {
+                                show: false
+                            }
+                        },
+                    }
+                ],
+            };
+            this.$echarts.init(document.getElementById('defectLevel')).setOption(option3)
+            let option4={
+                xAxis: {
+                    type: 'category',
+                    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    data: [0.1, 0.5, 0.2, 0.25, 0.30, 0.29, 0.18],
+                    type: 'bar'
+                }]
+            }          
+            this.$echarts.init(document.getElementById('defectRate')).setOption(option4)
         })
        
     },
@@ -261,6 +335,7 @@ export default {
         height: 150px;
     }
     #defect{
+        /* margin-top: 20px; */
         height: 150px;
     }
     #fenbu{
@@ -281,9 +356,26 @@ export default {
         
         display: flex;
     }
+    #defectRate{
+        height: 350px;
+    }
     .footer-wrapper>div{
         flex: 1;
         margin: 10px 0 0 10px;
         background-color: #fff;
     }
+    .top1{
+        font-size: 32px;
+        color: #f00;
+        line-height: 40px;
+    }
+    .top2,.top3{
+        font-size: 24px;
+        color: #666;
+        line-height: 30px;
+    }
+    #defectLevel{
+        height: 250px;
+    }
+    
 </style>

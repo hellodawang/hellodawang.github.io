@@ -4,11 +4,13 @@
     <div class="six">
       <ul class="aside">
         <li><router-link to="/info">项目概况</router-link></li>
-        <li><router-link to="/info">我的代办</router-link></li>
-        <li><router-link to="/board">项目进展</router-link></li>
+        <li><router-link to="/version">迭代版本管理</router-link></li>
+        <li><router-link to="/board">需求管理</router-link></li>
+        <li><router-link to="/board">story看板</router-link></li>
         <li><router-link to="/defect">缺陷管理</router-link></li>
         <li><router-link to="/risk">风险管理</router-link></li>
         <li><router-link to="/cost">项目投入</router-link></li>
+        <!-- <el-tree :data="data" :props="defaultProps" @node-click="handleNodeClick"></el-tree> -->
       </ul>
       <div class="content">
         <router-view  />

@@ -25,9 +25,6 @@
                 <el-radio label="提示" name="type"></el-radio>
                 </el-radio-group>
             </el-form-item>
-            <el-form-item label="处理人" prop="delivery">
-                <el-input ></el-input>
-            </el-form-item>
             <el-form-item label="关联需求" prop="delivery">
                 <el-button icon="el-icon-search" circle size='mini' @click="dialogVisible = true"></el-button>
             </el-form-item>

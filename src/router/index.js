@@ -8,6 +8,9 @@ import defect from '@/components/defect/defect'
 import addDefect from '@/components/defect/addDefect'
 import risk from '@/components/risk/risk'
 import addRisk from '@/components/risk/addRisk'
+import editStory from '@/components/board/storyDetail'
+import defectInfo from '@/components/defect/defectInfo'
+import version from '@/components/version'
 
 Vue.use(Router)
 
@@ -45,8 +48,8 @@ export default new Router({
     },
     {
       path: '/cost',
-      name: 'cropper',
-      component: cropper
+      name: 'risk',
+      component: risk
     },
     {
       path: '/addDefect',
@@ -54,9 +57,24 @@ export default new Router({
       component: addDefect
     },
     {
+      path: '/defectInfo',
+      name: 'defectInfo',
+      component: defectInfo
+    },
+    {
       path: '/addRisk',
       name: 'addRisk',
       component: addRisk
     },
+    {
+      path: '/editStory',
+      name: 'editStory',
+      component: editStory
+    },
+    {
+      path: '/version',
+      name: 'version',
+      component: version
+    }
   ]
 })

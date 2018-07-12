@@ -2,7 +2,8 @@
 <div class="box">
     <div class="wrapper">
         <div class="cropper-wrapper">
-            <vue-cropper ref="cropper" :img="option.img"  :outputType="option.outputType" @realTime="realTime" :autoCrop='true' :fixedBox='true' :full='option.full'></vue-cropper>
+            <vue-cropper ref="cropper" :img="option.img"  :outputType="option.outputType" @realTime="realTime" :autoCrop='option.autoCrop' :fixedBox='option.fixedBox' :full='option.full' :autoCropWidth='option.autoCropWidth'
+		:autoCropHeight='option.autoCropHeight'></vue-cropper>
             <div class="upload-wrapper">
                 <el-upload
                     class="upload-demo"
@@ -13,11 +14,9 @@
                     ref="upload"
                     action="https://jsonplaceholder.typicode.com/posts/">   
                     <el-button slot="trigger" size="small" type="primary">选取文件</el-button>             
-                    <el-row>
-                        <el-button icon="el-icon-minus" circle size="mini"></el-button>
-                        <el-button icon="el-icon-plus" circle size="mini"></el-button>
-                        <el-button icon="el-icon-refresh" circle size="mini"></el-button>
-                    </el-row>
+                    <el-button icon="el-icon-minus" circle size="mini" @click="minus"></el-button>
+                    <el-button icon="el-icon-plus" circle size="mini" @click="plus"></el-button>
+                    <el-button icon="el-icon-refresh" circle size="mini"></el-button>
                 </el-upload>
             </div>
         </div>
@@ -55,9 +54,12 @@ export default {
                 full: true,
                 outputType: 'png',
                 canMove: true,
-                fixedBox: false,
                 original: false,
-                canMoveBox: false,   
+                canMoveBox: false, 
+                autoCrop:true,
+                fixedBox:true,
+                autoCropWidth:300,
+                autoCropHeight:300
             },
             previews:{
 
@@ -77,6 +79,12 @@ export default {
         },
         realTime (data) {
             this.previews = data
+        },
+        minus(){
+            this.$refs.cropper.changeScale(-1) 
+        },
+        plus(){
+           this.$refs.cropper.changeScale(1) 
         }
     }
 }
@@ -92,8 +100,8 @@ export default {
     height: 350px;
 }
     .cropper-wrapper{
-        height:250px;
-        width: 250px;
+        height:300px;
+        width: 300px;
         float: left;
     }
     .upload-wrapper{
