@@ -28,8 +28,8 @@
                 </el-col>
             </el-row>
             <el-row style="margin-top:10px">
-                <el-col :span='2'><el-button size='mini'  icon="el-icon-plus" @click="addStory">新增story</el-button></el-col>
-                <!-- <el-col :span='2'><el-button size='mini' icon="el-icon-upload2">story导入</el-button></el-col> -->
+                <el-col :span='2'><el-button size='mini'  icon="el-icon-plus" @click="addStory">新增需求</el-button></el-col>
+                <el-col :span='2'><el-button size='mini' icon="el-icon-upload2">批量导入</el-button></el-col>
             </el-row>
         </div>
         <div class="ggg">
@@ -40,7 +40,7 @@
                         <div v-for="element in tags" :key="element.id" class="item" @click="showDetail">
                             <div class="item-title">{{element.name}}</div>
                             <div class="item-info">
-                                <span class="priority one"></span>
+                                <span class="priority" :class="{one:element.pri==1,two:element.pri==2,three:element.pri==3}"></span>
                                 <div class="item-avator">
                                     <img src="../../assets/logo.png" alt="">
                                 </div>
@@ -56,7 +56,7 @@
                         <div v-for="element in arr" :key="element.id" class="item">
                             <div class="item-title">{{element.name}}</div>
                             <div class="item-info">
-                                <span class="priority two"></span>
+                                <span class="priority" :class="{one:element.pri==1,two:element.pri==2,three:element.pri==3}"></span>
                                 <div class="item-avator">
                                     <img src="../../assets/logo.png" alt="">
                                 </div>
@@ -72,7 +72,7 @@
                         <div v-for="element in arr1" :key="element.id" class="item">
                             <div class="item-title">{{element.name}}</div>
                             <div class="item-info">
-                                <span class="priority three"></span>
+                                <span class="priority" :class="{one:element.pri==1,two:element.pri==2,three:element.pri==3}"></span>
                                 <div class="item-avator">
                                     <img src="../../assets/logo.png" alt="">
                                 </div>
@@ -88,7 +88,7 @@
                         <div v-for="element in arr2" :key="element.id" class="item">
                             <div class="item-title">{{element.name}}</div>
                             <div class="item-info">
-                                <span class="priority one"></span>
+                                <span class="priority" :class="{one:element.pri==1,two:element.pri==2,three:element.pri==3}"></span>
                                 <div class="item-avator">
                                     <img src="../../assets/logo.png" alt="">
                                 </div>
@@ -104,7 +104,7 @@
                         <div v-for="element in arr3" :key="element.id" class="item">
                             <div class="item-title">{{element.name}}</div>
                             <div class="item-info">
-                                <span class="priority one"></span>
+                                <span class="priority" :class="{one:element.pri==1,two:element.pri==2,three:element.pri==3}"></span>
                                 <div class="item-avator">
                                     <img src="../../assets/logo.png" alt="">
                                 </div>
@@ -124,11 +124,11 @@ export default {
         },
     data(){
         return{
-            tags:[{id:1,name:'测试需要测试需要测试需要测试需要'},{id:2,name:'需求2'},{id:3,name:'需求3'}],
-            arr:[{id:5,name:'需求4'},{id:6,name:'需求5'},{id:7,name:'需求6'}],
-            arr1:[{id:8,name:'需求7'},{id:11,name:'需求8'},{id:14,name:'需求9'}],
-            arr2:[{id:9,name:'需求10'},{id:12,name:'需求5'},{id:15,name:'需求6'}],
-            arr3:[{id:10,name:'需求4'},{id:13,name:'需求5'},{id:16,name:'需求6'}],
+            tags:[{id:1,name:'测试需要测试需要测试需要测试需要',pri:1},{id:2,name:'需求2',pri:2},{id:3,name:'需求3',pri:3}],
+            arr:[{id:5,name:'需求4',pri:2},{id:6,name:'需求5',pri:3},{id:7,name:'需求6',pri:2}],
+            arr1:[{id:8,name:'需求7',pri:1},{id:11,name:'需求8',pri:1},{id:14,name:'需求9',pri:3}],
+            arr2:[{id:9,name:'需求10',pri:2},{id:12,name:'需求5',pri:2},{id:15,name:'需求6',pri:1}],
+            arr3:[{id:10,name:'需求4',pri:3},{id:13,name:'需求5',pri:1},{id:16,name:'需求6',pri:1}],
             detailShow:true
         }
     },

@@ -1,10 +1,8 @@
 <template>
     <div class="info-wrapper">
-        <div>当前版本：七月份版本</div>
-        <!-- 基本信息 -->
         <div class="general">
             <div class="general-health">
-                <h3>项目健康度</h3>
+                <h3 class="title">项目健康度</h3>
                 <div class="health-circle-wrapper">
                     <div class="health-circle">
                         <span>100</span>
@@ -13,46 +11,68 @@
                 <p>你的项目很健康</p>
             </div>
             <div class="general-progress">
-                <h3>项目进度</h3>
-                <div id="mychart"></div>
+                <h3 class="title">项目进度偏差率</h3>
+                <el-progress type="circle" :percentage="80"></el-progress>
             </div>
             <div class="general-defect">
-                <h3>缺陷率</h3>
-                <div id="defect"></div>
+                <h3 class="title">缺陷率</h3>
+                <el-progress type="circle" :percentage="30"></el-progress>
             </div>
             <div class="general-risk">
-                <h3>风险top3</h3>
-                <ul id="defect">
-                    <li class="top1">风险2</li>
-                    <li class="top2">风险3</li>
-                    <li class="top3">风险1</li>
-                </ul>
+                <h3 class="title">风险</h3>
+                <el-progress type="circle" :percentage="30"></el-progress>
             </div>
         </div>
-        <div class="middle-wrapper">
-            <!-- 项目进度分布 -->
-            <div class="progress">
-                <!-- <h3>项目进度分布</h3> -->
-                <div id="fenbu">
-                </div>
+        <div class="info">
+            <div class="program">
+                <h3 class="title">鸿合云</h3>
+                <table width="100%">
+                    <tr>
+                        <td width='50%'>当前版本</td>
+                        <td width='50%'>6月份版本</td>
+                    </tr>
+                    <tr>
+                        <td>项目进度</td>
+                        <td><el-progress :percentage="80" color="#8e71c7" ></el-progress></td>
+                    </tr>
+                    <tr>
+                        <td>开始日期</td>
+                        <td>2018-06-01</td>
+                    </tr>
+                    <tr>
+                        <td>预计结束日期</td>
+                        <td>2018-06-01</td>
+                    </tr>
+                    <tr>
+                        <td>需求数</td>
+                        <td>6</td>
+                    </tr>
+                    <tr>
+                        <td>缺陷数</td>
+                        <td>6</td>
+                    </tr>
+                    <tr>
+                        <td>风险数</td>
+                        <td>6</td>
+                    </tr>
+                </table>
             </div>
-            <div class="defect-level">
-                <!-- <h3>缺陷严重等级分布</h3> -->
-                <div id="defectLevel">
-
-                </div>
+            <div class="member">
+                <h3 class="title">项目成员</h3>
+                <el-table :data="tableData" style="width: 100%">
+                    <el-table-column prop="name" label="成员"><template slot-scope="scope"> <img src="../../assets/66.jpg" alt="" class="member-avator"><span style="margin-left: 10px">{{ scope.row.name }}</span></template></el-table-column>
+                    <el-table-column prop="address" label="角色"></el-table-column>
+                </el-table>
             </div>
-            <div class="progress">
-                <!-- <h3>里程碑</h3> -->
-            </div>
+            <div class="licheng">里程碑</div>     
         </div>
-        <div class="footer-wrapper">
-            <div>
-                <h3>各个版本缺陷率分布</h3>
-                <div id="defectRate"></div>   
-            </div>
-            <div>
-                <h3>里程碑</h3>   
+        <div>需求分配预览</div>
+        <div class="feature">       
+            <div class="feature-item" v-for="item in arr" :key="item.id">
+                <img src="../../assets/66.jpg" alt="" class="avator">
+                <div class="box">
+                    <div class="box-item" v-for="item1 in item.feature" :key="item1.id">{{item1.name}}</div>
+                </div>
             </div>
         </div>
     </div>
@@ -61,248 +81,37 @@
 export default {
     mounted() {
         this.$nextTick(() => { 
-            let mychart = this.$echarts.init(document.getElementById('mychart'))
-            var option = {
-                backgroundColor:'#FFF',
-                color:['#38a8da','#d4effa'],
-                title: {
-                    // text: 'title',
-                    top:'3%',
-                    left:'1%',
-                    textStyle:{
-                        color: '#333',
-                        fontStyle: 'normal',
-                        fontWeight: 'normal',
-                        fontFamily: 'sans-serif',
-                        fontSize: 16,
-                    }
-                },
-                series: [{
-                    // name: '来源',
-                    type: 'pie',
-                    radius: ['60%', '75%'],
-                    avoidLabelOverlap: false,
-                    hoverAnimation:false,
-                    label: {
-                        normal: {
-                            show: false,
-                            position: 'center',
-                            textStyle: {
-                                fontSize: 16,
-                                fontWeight: 'bold'
-                            },
-                            formatter:'{b}\n{c}%'
-                        }
-                    },
-                    data: [{
-                            value: 20,
-                            // name: '项目进度',
-                            label:{
-                                normal:{
-                                    show:true
-                                }
-                            }
-                        },
-                        {
-                            value: 80,
-                            name: ''
-                        }
-                    ]
-                }]
-            };
-            mychart.setOption(option)
-            let defect = this.$echarts.init(document.getElementById('defect'))
-            var option1 = {
-                backgroundColor:'#FFF',
-                color:['#38a8da','#d4effa'],
-                title: {
-                    // text: 'title',
-                    top:'3%',
-                    left:'1%',
-                    textStyle:{
-                        color: '#333',
-                        fontStyle: 'normal',
-                        fontWeight: 'normal',
-                        fontFamily: 'sans-serif',
-                        fontSize: 16,
-                    }
-                },
-                series: [{
-                    // name: '来源',
-                    type: 'pie',
-                    radius: ['60%', '75%'],
-                    avoidLabelOverlap: false,
-                    hoverAnimation:false,
-                    label: {
-                        normal: {
-                            show: false,
-                            position: 'center',
-                            textStyle: {
-                                fontSize: 16,
-                                fontWeight: 'bold'
-                            },
-                            formatter:'{b}\n{c}%'
-                        }
-                    },
-                    data: [{
-                            value: 20,
-                            // name: '项目进度',
-                            label:{
-                                normal:{
-                                    show:true
-                                }
-                            }
-                        },
-                        {
-                            value: 80,
-                            name: ''
-                        }
-                    ]
-                }]
-            };
-            defect.setOption(option1)
-            let option2 = {
-                title : {
-                    text: '项目进度分布',
-                    // subtext: '纯属虚构',
-                    x:'center'
-                },
-                tooltip : {
-                    trigger: 'item',
-                    formatter: "{a} <br/>{b} : {c} ({d}%)"
-                },
-                legend: {
-                    type: 'scroll',
-                    orient: 'vertical',
-                    right: 10,
-                    top: 20,
-                    bottom: 20,
-                    data: [
-                        {name: '需求分析中', value: 1212},
-                        {name: '开发中', value: 2323},
-                        {name: '待开发', value: 1919},
-                        {name: '待测试', value: 1919},
-                        {name: '已完成', value: 1919},
-                    ],
-                    // selected: data.selected
-                },
-                series : [
-                    {
-                        // name: '姓名',
-                        type: 'pie',
-                        radius : '55%',
-                        center: ['40%', '50%'],
-                         data: [
-                            {name: '需求分析中', value: 1212},
-                            {name: '开发中', value: 2323},
-                            {name: '待开发', value: 1919},
-                            {name: '待测试', value: 1919},
-                            {name: '已完成', value: 1919},
-                        ],
-                        label: {
-                            normal: {
-                                show: false,
-                                position: 'center'
-                            },
-                            emphasis: {
-                                show: false,
-                                textStyle: {
-                                    fontSize: '30',
-                                    fontWeight: 'bold'
-                                }
-                            }
-                        },
-                        labelLine: {
-                            normal: {
-                                show: false
-                            }
-                        },
-                    }
-                ],
-            };
-            this.$echarts.init(document.getElementById('fenbu')).setOption(option2)
-            let option3 = {
-                title : {
-                    text: '缺陷严重等级',
-                    // subtext: '纯属虚构',
-                    x:'center'
-                },
-                tooltip : {
-                    trigger: 'item',
-                    formatter: "{a} <br/>{b} : {c} ({d}%)"
-                },
-                legend: {
-                    type: 'scroll',
-                    orient: 'vertical',
-                    right: 10,
-                    top: 20,
-                    bottom: 20,
-                    data: [
-                        {name: '致命', value: 10},
-                        {name: '严重', value: 800},
-                        {name: '一般', value: 600},
-                        {name: '提示', value: 2000},
-                    ],
-                    // selected: data.selected
-                },
-                series : [
-                    {
-                        // name: '姓名',
-                        type: 'pie',
-                        radius : '55%',
-                        center: ['40%', '50%'],
-                         data: [
-                            {name: '致命', value: 50},
-                            {name: '严重', value: 800},
-                            {name: '一般', value: 600},
-                            {name: '提示', value: 1000},
-                        ],
-                        label: {
-                            normal: {
-                                show: false,
-                                position: 'center'
-                            },
-                            emphasis: {
-                                show: false,
-                                textStyle: {
-                                    fontSize: '30',
-                                    fontWeight: 'bold'
-                                }
-                            }
-                        },
-                        labelLine: {
-                            normal: {
-                                show: false
-                            }
-                        },
-                    }
-                ],
-            };
-            this.$echarts.init(document.getElementById('defectLevel')).setOption(option3)
-            let option4={
-                xAxis: {
-                    type: 'category',
-                    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-                },
-                yAxis: {
-                    type: 'value'
-                },
-                series: [{
-                    data: [0.1, 0.5, 0.2, 0.25, 0.30, 0.29, 0.18],
-                    type: 'bar'
-                }]
-            }          
-            this.$echarts.init(document.getElementById('defectRate')).setOption(option4)
-        })
-       
+        })      
     },
+    data(){
+        return{
+            arr:[
+                {id:1,name:2,feature:[{id:11,name:'需求1'},{id:12,name:'需求2'},{id:13,name:'需求3'},{id:14,name:'需求4'},{id:15,name:'需求4'},{id:16,name:'需求4'},{id:17,name:'需求4'}]},
+                {id:2,name:2,feature:[{id:21,name:'需求5'},{id:22,name:'需求9'},{id:23,name:'需求13'},{id:24,name:'需求17'}]},
+                {id:3,name:2,feature:[{id:31,name:'需求6'},{id:32,name:'需求10'},{id:33,name:'需求14'},{id:34,name:'需求18'}]},
+                {id:4,name:2,feature:[{id:41,name:'需求7'},{id:42,name:'需求11'},{id:43,name:'需求15'},{id:44,name:'需求19'}]},
+                {id:5,name:2,feature:[{id:51,name:'需求8'},{id:52,name:'需求12'},{id:53,name:'需求16'},{id:54,name:'需求20'}]},
+            ],
+            tableData:[{
+                    name: '王小虎',
+                    address: 'java'
+                }, {
+                    name: '王小虎',
+                    address: 'java'
+                }, {
+                    name: '王小虎',
+                    address: '前端'
+                }, {
+                    name: '王小虎',
+                    address: 'java'
+                }
+            ]
+        }
+        
+    }
 }
 </script>
 <style  scoped>
-.info-wrapper{
-    background-color: #f0f0f0;
-    height: 100%;
-}
     .general{
         display: flex;
         height: 200px;
@@ -310,7 +119,7 @@ export default {
     .general>div{
         flex: 1;
         background-color: #fff;
-        margin: 10px 0 0 10px;
+        margin: 0 10px 10px 0;
         border-radius: 4px;
     }
     .health-circle-wrapper{
@@ -331,51 +140,73 @@ export default {
         font-size: 40px;
         margin: 5px auto;
     }
-    #mychart{
-        height: 150px;
-    }
-    #defect{
-        /* margin-top: 20px; */
-        height: 150px;
-    }
-    #fenbu{
-        height: 200px;
-    }
-    .middle-wrapper{
+    .feature{
         display: flex;
-    }
-    .middle-wrapper>div{
-        flex: 1;
+        margin-top: 10px;
         background-color: #fff;
-        height: 250px;
-        margin: 10px 0 0 10px;
+        padding: 10px 0;
+    }
+    .feature-item{
+        flex:1;
+        box-shadow: 0 0 5px #ccc;
+        margin-right: 10px;
         border-radius: 4px;
+        padding: 20px;
+        position: relative;
     }
-    .footer-wrapper{
-        height: 400px;
-        
+    .avator{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        position: absolute;
+        top: 20px;
+        z-index: 50;
+        left: 50%;
+        margin-left: -20px;
+    }
+    .box{
+        margin-top: 60px;
+    }
+    .box-item{
+        box-shadow: 0 0 5px #ccc;
+        margin-bottom: 20px;
+        height: 60px;
+    }
+    .member{
+        background-color: #fff;
+        flex:2;
+        padding: 10px 20px;
+    }
+    .member-avator{
+        width: 27px;
+        height: 27px;
+        border-radius: 50%;
+        vertical-align: middle;
+    }
+    .info{
         display: flex;
     }
-    #defectRate{
-        height: 350px;
-    }
-    .footer-wrapper>div{
-        flex: 1;
-        margin: 10px 0 0 10px;
+    .program{
+        flex: 2;
         background-color: #fff;
+        margin-right: 10px;
+        padding: 10px 20px;
     }
-    .top1{
-        font-size: 32px;
-        color: #f00;
-        line-height: 40px;
+    .title{
+        font-size: 18px;
+        color: #333;
+        line-height: 1.8em;
+        font-weight: bold;
     }
-    .top2,.top3{
-        font-size: 24px;
+    .program tr{
+        font-size: 14px;
+        line-height: 36px;
         color: #666;
-        line-height: 30px;
     }
-    #defectLevel{
-        height: 250px;
+    .licheng{
+        flex: 3;
+        background-color: #fff;
+        margin-left: 10px;
+        margin-right: 10px;
     }
-    
 </style>
