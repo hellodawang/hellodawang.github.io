@@ -2,25 +2,44 @@
     <div class="info-wrapper">
         <div class="general">
             <div class="general-health">
-                <h3 class="title">项目健康度</h3>
-                <div class="health-circle-wrapper">
-                    <div class="health-circle">
-                        <span>100</span>
-                    </div>
-                </div>
-                <p>你的项目很健康</p>
+                <h3 class="title">项目健康度</h3>              
+                <el-row >
+                    <el-col :span="16">
+                        <div class="health-circle-wrapper">
+                            <div class="health-circle">
+                                <span>100</span>
+                            </div>
+                        </div>
+                    </el-col>
+                    <el-col :span="8"><p>你的项目很健康</p></el-col>
+                </el-row>             
             </div>
             <div class="general-progress">
                 <h3 class="title">项目进度偏差率</h3>
-                <el-progress type="circle" :percentage="80"></el-progress>
+                <el-row>
+                    <el-col :span="16">
+                        <el-progress type="circle" :percentage="80" :width='110' :stroke-width='8'></el-progress>
+                    </el-col>
+                    <el-col :span="8"></el-col>
+                </el-row> 
             </div>
             <div class="general-defect">
                 <h3 class="title">缺陷率</h3>
-                <el-progress type="circle" :percentage="30"></el-progress>
+                <el-row>
+                    <el-col :span="16">
+                        <el-progress type="circle" :percentage="80" :width='110' :stroke-width='8'></el-progress>
+                    </el-col>
+                    <el-col :span="8"></el-col>
+                </el-row> 
             </div>
             <div class="general-risk">
                 <h3 class="title">风险</h3>
-                <el-progress type="circle" :percentage="30"></el-progress>
+                <el-row>
+                    <el-col :span="16">
+                        <el-progress type="circle" :percentage="80" :width='110' :stroke-width='8'></el-progress>
+                    </el-col>
+                    <el-col :span="8"></el-col>
+                </el-row> 
             </div>
         </div>
         <div class="info">
@@ -66,15 +85,17 @@
             </div>
             <div class="licheng">里程碑</div>     
         </div>
-        <div>需求分配预览</div>
-        <div class="feature">       
-            <div class="feature-item" v-for="item in arr" :key="item.id">
-                <img src="../../assets/66.jpg" alt="" class="avator">
-                <div class="box">
-                    <div class="box-item" v-for="item1 in item.feature" :key="item1.id">{{item1.name}}</div>
+        <div style="margin-top: 10px;background-color:#fff;padding:0 20px 10px">
+            <h3 style="height:40px;line-height:40px;margin-right:10px;margin-bottom:10px;font-size:18px;font-weight:bold">需求分配预览</h3>
+            <div class="feature">       
+                <div class="feature-item" v-for="item in arr" :key="item.id">
+                    <img src="../../assets/66.jpg" alt="" class="avator">
+                    <div class="box">
+                        <div class="box-item" v-for="item1 in item.feature" :key="item1.id">{{item1.name}}</div>
+                    </div>
                 </div>
-            </div>
-        </div>
+            </div> 
+        </div>    
     </div>
 </template>
 <script>
@@ -121,6 +142,7 @@ export default {
         background-color: #fff;
         margin: 0 10px 10px 0;
         border-radius: 4px;
+        padding: 10px 20px;
     }
     .health-circle-wrapper{
         width: 120px;
@@ -142,17 +164,18 @@ export default {
     }
     .feature{
         display: flex;
-        margin-top: 10px;
-        background-color: #fff;
-        padding: 10px 0;
+        /* background-color: #fff; */
     }
     .feature-item{
         flex:1;
-        box-shadow: 0 0 5px #ccc;
-        margin-right: 10px;
         border-radius: 4px;
         padding: 20px;
         position: relative;
+        background-color: #fff;
+        
+    }
+    .feature-item+.feature-item{
+        border-left: 1px dashed #c0c0c0;
     }
     .avator{
         width: 40px;
