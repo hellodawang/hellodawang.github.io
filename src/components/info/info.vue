@@ -4,21 +4,21 @@
             <div class="general-health">
                 <h3 class="title">项目健康度</h3>              
                 <el-row >
-                    <el-col :span="16">
+                    <!-- <el-col :span="16"> -->
                         <div class="health-circle-wrapper">
                             <div class="health-circle">
                                 <span>100</span>
                             </div>
                         </div>
-                    </el-col>
-                    <el-col :span="8"><p>你的项目很健康</p></el-col>
+                    <!-- </el-col> -->
+                    <!-- <el-col :span="8"><p>你的项目很健康</p></el-col> -->
                 </el-row>             
             </div>
             <div class="general-progress">
                 <h3 class="title">项目进度偏差率</h3>
                 <el-row>
-                    <el-col :span="16">
-                        <el-progress type="circle" :percentage="80" :width='110' :stroke-width='8'></el-progress>
+                    <el-col :span="16" >
+                        <div class='progress-circle'><el-progress type="circle" :percentage="80" :width='110' :stroke-width='8' ></el-progress></div>
                     </el-col>
                     <el-col :span="8"></el-col>
                 </el-row> 
@@ -27,7 +27,7 @@
                 <h3 class="title">缺陷率</h3>
                 <el-row>
                     <el-col :span="16">
-                        <el-progress type="circle" :percentage="80" :width='110' :stroke-width='8'></el-progress>
+                        <div class='progress-circle'><el-progress type="circle" :percentage="80" :width='110' :stroke-width='8' ></el-progress></div>
                     </el-col>
                     <el-col :span="8"></el-col>
                 </el-row> 
@@ -36,7 +36,7 @@
                 <h3 class="title">风险</h3>
                 <el-row>
                     <el-col :span="16">
-                        <el-progress type="circle" :percentage="80" :width='110' :stroke-width='8'></el-progress>
+                        <div class='progress-circle'><el-progress type="circle" :percentage="80" :width='110' :stroke-width='8' ></el-progress></div>
                     </el-col>
                     <el-col :span="8"></el-col>
                 </el-row> 
@@ -86,12 +86,17 @@
             <div class="licheng">里程碑</div>     
         </div>
         <div style="margin-top: 10px;background-color:#fff;padding:0 20px 10px">
-            <h3 style="height:40px;line-height:40px;margin-right:10px;margin-bottom:10px;font-size:18px;font-weight:bold">需求分配预览</h3>
+            <h3 style="height:40px;line-height:40px;margin-right:10px;margin-bottom:10px;font-size:18px;font-weight:bold">需求分配一览</h3>
             <div class="feature">       
                 <div class="feature-item" v-for="item in arr" :key="item.id">
-                    <img src="../../assets/66.jpg" alt="" class="avator">
+                    <img src="../../assets/66.jpg" alt="" class="avator">                   
                     <div class="box">
-                        <div class="box-item" v-for="item1 in item.feature" :key="item1.id">{{item1.name}}</div>
+                        <p  style='text-align:center;padding-bottom:20px'>王小虎</p>
+                        <div class="box-item" v-for="item1 in item.feature" :key="item1.id">
+                            <p>{{item1.name}}</p>
+                            <el-tag type="success" v-if='item1.status==1' class="tag">closed</el-tag>
+                            <el-tag type="warning" v-if='item1.status==2' class="tag">open</el-tag>
+                        </div>
                     </div>
                 </div>
             </div> 
@@ -107,11 +112,11 @@ export default {
     data(){
         return{
             arr:[
-                {id:1,name:2,feature:[{id:11,name:'需求1'},{id:12,name:'需求2'},{id:13,name:'需求3'},{id:14,name:'需求4'},{id:15,name:'需求4'},{id:16,name:'需求4'},{id:17,name:'需求4'}]},
-                {id:2,name:2,feature:[{id:21,name:'需求5'},{id:22,name:'需求9'},{id:23,name:'需求13'},{id:24,name:'需求17'}]},
-                {id:3,name:2,feature:[{id:31,name:'需求6'},{id:32,name:'需求10'},{id:33,name:'需求14'},{id:34,name:'需求18'}]},
-                {id:4,name:2,feature:[{id:41,name:'需求7'},{id:42,name:'需求11'},{id:43,name:'需求15'},{id:44,name:'需求19'}]},
-                {id:5,name:2,feature:[{id:51,name:'需求8'},{id:52,name:'需求12'},{id:53,name:'需求16'},{id:54,name:'需求20'}]},
+                {id:1,name:2,feature:[{id:11,name:'哈哈哈哈哈哈哈哈哈哈哈哈哈',status:1},{id:12,name:'需求2',status:2},{id:13,name:'需求3'},{id:14,name:'需求4'},{id:15,name:'需求4'},{id:16,name:'需求4'},{id:17,name:'需求4'}]},
+                {id:2,name:2,feature:[{id:21,name:'需求5',status:2},{id:22,name:'需求9',status:1},{id:23,name:'需求13'},{id:24,name:'需求17'}]},
+                {id:3,name:2,feature:[{id:31,name:'需求6',status:2},{id:32,name:'需求10',status:1},{id:33,name:'需求14'},{id:34,name:'需求18'}]},
+                {id:4,name:2,feature:[{id:41,name:'需求7',status:2},{id:42,name:'需求11',status:1},{id:43,name:'需求15'},{id:44,name:'需求19'}]},
+                {id:5,name:2,feature:[{id:51,name:'需求8',status:2},{id:52,name:'需求12',status:1},{id:53,name:'需求16'},{id:54,name:'需求20'}]},
             ],
             tableData:[{
                     name: '王小虎',
@@ -194,6 +199,13 @@ export default {
         box-shadow: 0 0 5px #ccc;
         margin-bottom: 20px;
         height: 60px;
+        padding: 10px 70px 10px 10px;
+        position: relative;
+    }
+    .tag{
+        position: absolute;
+        top:10px;
+        right: 10px;
     }
     .member{
         background-color: #fff;
@@ -231,5 +243,9 @@ export default {
         background-color: #fff;
         margin-left: 10px;
         margin-right: 10px;
+    }
+    .progress-circle{
+        width: 110px;
+        margin: 10px auto;
     }
 </style>
